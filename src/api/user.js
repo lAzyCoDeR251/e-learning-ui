@@ -1,7 +1,7 @@
 const userApi = {
   fetchUserProfile: async (token) => {
     try {
-      const response = await fetch("https://chart-backend-4zsf.onrender.com/api/user/profile", {
+      const response = await fetch("https://e-learning-awwl.onrender.com/api/user/profile", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -29,7 +29,7 @@ const userApi = {
         console.log(pair[0] + ", " + pair[1]);
       }
       const response = await fetch(
-        "https://chart-backend-4zsf.onrender.com/api/user/profile/update",
+        "https://e-learning-awwl.onrender.com/api/user/profile/update",
         {
           method: "PUT",
           headers: {
@@ -51,7 +51,7 @@ const userApi = {
   updatePassword: async (token, passwordData) => {
     try {
       const response = await fetch(
-        "https://chart-backend-4zsf.onrender.com/api/user/update-password",
+        "https://e-learning-awwl.onrender.com/api/user/update-password",
         {
           method: "PUT",
           headers: {
@@ -79,7 +79,7 @@ const userApi = {
     console.log(page, category, level, popularity);
     try {
       const response = await fetch(
-        `https://chart-backend-4zsf.onrender.com/api/user/courses?page=${page}&category=${category}&level=${level}&popularity=${popularity}`,
+        `https://e-learning-awwl.onrender.com/api/user/courses?page=${page}&category=${category}&level=${level}&popularity=${popularity}`,
         {
           method: "GET",
           headers: {
@@ -105,7 +105,7 @@ const userApi = {
   getCourseById: async (token, courseId) => {
     try {
       const response = await fetch(
-        `https://chart-backend-4zsf.onrender.com/api/user/courses/${courseId}`,
+        `https://e-learning-awwl.onrender.com/api/user/courses/${courseId}`,
         {
           method: "GET",
           headers: {
@@ -131,7 +131,7 @@ const userApi = {
   getUnAuthCourses: async (token) => {
     try {
       const response = await fetch(
-        "https://chart-backend-4zsf.onrender.com/api/user/home-courses",
+        "https://e-learning-awwl.onrender.com/api/user/home-courses",
         {
           method: "GET",
           headers: {
@@ -157,7 +157,7 @@ const userApi = {
   enrollUserInCourse: async (token, courseId) => {
     console.log("this is enrolled courseID :", courseId);
     try {
-      await fetch("https://chart-backend-4zsf.onrender.com/api/course/enroll", {
+      await fetch("https://e-learning-awwl.onrender.com/api/course/enroll", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -174,7 +174,7 @@ const userApi = {
   getEnrolledCourses: async (token, userId) => {
     try {
       const response = await fetch(
-        `https://chart-backend-4zsf.onrender.com/api/course/enrolled-courses/${userId}`,
+        `https://e-learning-awwl.onrender.com/api/course/enrolled-courses/${userId}`,
         {
           method: "GET",
           headers: {
@@ -199,7 +199,7 @@ const userApi = {
 
   createCourse: async (token, courseData) => {
     try {
-      const response = await fetch("https://chart-backend-4zsf.onrender.com/api/user/courses", {
+      const response = await fetch("https://e-learning-awwl.onrender.com/api/user/courses", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -222,7 +222,7 @@ const userApi = {
     try {
       console.log("Structring data : ", { course: updatedCourseData });
       const response = await fetch(
-        `https://chart-backend-4zsf.onrender.com/api/user/courses/${courseId}`,
+        `https://e-learning-awwl.onrender.com/api/user/courses/${courseId}`,
         {
           method: "PUT",
           headers: {
@@ -257,7 +257,7 @@ const userApi = {
     console.log("this is course id:" ,courseId);
     try {
       const response = await fetch(
-        `https://chart-backend-4zsf.onrender.com/api/user/courses/${courseId}`,
+        `https://e-learning-awwl.onrender.com/api/user/courses/${courseId}`,
         {
           method: "DELETE",
           headers: {

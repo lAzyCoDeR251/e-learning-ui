@@ -21,7 +21,7 @@ const SignUp = () => {
     try {
       // Make an HTTP POST request to your backend API endpoint
       const response = await axios.post(
-        "https://chart-backend-4zsf.onrender.com/api/user/register",
+        "https://e-learning-awwl.onrender.com/api/user/register",
         {
           name,
           email,
