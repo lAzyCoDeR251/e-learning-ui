@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../app/globals.css";
 import axios from "axios";
+import Link from "next/link";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -20,7 +21,7 @@ const SignUp = () => {
     try {
       // Make an HTTP POST request to your backend API endpoint
       const response = await axios.post(
-        "http://localhost:5000/api/user/register",
+        "https://chart-backend-4zsf.onrender.com/api/user/register",
         {
           name,
           email,
@@ -28,7 +29,7 @@ const SignUp = () => {
         }
       );
 
-      console.log("Signup successful", response.data); // Log response data
+      // console.log("Signup successful", response.data); // Log response data
       toast.success(response.data.message);
       router.push("/signin");
     } catch (error) {
@@ -105,11 +106,11 @@ const SignUp = () => {
 
                   <p className="mt-6 text-xs text-gray-600 text-center">
                     Already have an account?{" "}
-                    <a href="/signin">
+                    <Link href="/signin">
                       <span className="text-blue-900 font-semibold">
                         Sign in
                       </span>
-                    </a>
+                    </Link>
                   </p>
                 </div>
               </div>

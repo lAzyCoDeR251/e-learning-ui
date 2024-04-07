@@ -17,7 +17,7 @@ const Profile = () => {
 
   const [errorPassword, setErrorPassword] = useState(null);
   const [successPassword, setSuccessPassword] = useState(false);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem("token");

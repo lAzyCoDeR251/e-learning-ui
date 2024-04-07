@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Link from "next/link";
 
 import "../app/globals.css";
 import axios from "axios";
@@ -11,7 +12,7 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [userProfile, setUserProfile] = useState(null);
+  // const [userProfile, setUserProfile] = useState(null);
   const router = useRouter();
 
   // Function to handle form submission
@@ -21,7 +22,7 @@ const SignIn = () => {
     try {
       // Make an HTTP POST request to your backend API endpoint
       const response = await axios.post(
-        "http://localhost:5000/api/user/login",
+        "https://chart-backend-4zsf.onrender.com/api/user/login",
         {
           email,
           password,
@@ -34,7 +35,7 @@ const SignIn = () => {
       // Fetch user profile data using the stored token
       //   const profileResponse = await fetchUserProfile(response.data.token);
       //   const userProfile = await profileResponse.json();
-      console.log("profiel: ", userProfile);
+      // console.log("profiel: ", userProfile);
 
       //   console.log("Signin successful", response.data);
       toast.success("Logged In Sucessfully");
@@ -121,11 +122,11 @@ const SignIn = () => {
                     </button>
                     <p className="mt-6 text-xs text-gray-600 text-center">
                       {" Don't have an account?"}
-                      <a href="/signup">
+                      <Link href="/signup">
                         <span className="text-blue-900 font-semibold">
                           Sign Up
                         </span>
-                      </a>
+                      </Link>
                     </p>
                   </div>
                 </div>
