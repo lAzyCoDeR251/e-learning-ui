@@ -1,0 +1,128 @@
+import React, { useEffect, useState } from "react";
+import userApi from "@/api/user";
+import { useRouter } from "next/router";
+import "../app/globals.css";
+import Header from "@/app/components/Header";
+import Footer from "@/app/components/Footer";
+import Link from "next/link";
+const ManageCourse = () => {
+  const [isSuperAdmin, setIsSuperAdmin] = useState(false);
+  const [courses, setCourses] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const router = useRouter();
+  const { id } = router.query;
+  // console.log(id);
+
+  useEffect(() => {
+    const checkIsSuperAdmin = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const userProfileData = await userApi.fetchUserProfile(token);
+        setIsSuperAdmin(userProfileData.user.issuperadmin);
+      } catch (error) {
+        console.error("Error checking user role:", error);
+        router.push("/");
+      }
+    };
+    checkIsSuperAdmin();
+  }, [router]);
+
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const data = await userApi.getUnAuthCourses(token);
+        setCourses(data.courses.result);
+        setLoading(false);
+        // console.log(data);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+
+    fetchCourses();
+  }, []);
+
+  if (!isSuperAdmin) {
+    return (
+      <div className="flex justify-center items-center h-[100vh]">
+        <h1 className="text-3xl ">Unauthorized Access</h1>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center h-[80vh]">
+        <h1 className="text-3xl ">Something went wrong!!!</h1>
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <Header />
+      <div className="min-h-[80vh] my-10">
+        <h1 className="m-5 text-4xl font-light text-black text-center ">
+          Manage Course
+        </h1>
+        {loading ? (
+          <div className="flex justify-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:mx-20">
+              {Array(10)
+                .fill()
+                .map((_, index) => (
+                  <div
+                    key={index}
+                    className="animate-pulse max-w-sm p-6 bg-gray-200 border border-gray-300 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+                  >
+                    <div className="h-4 bg-gray-400 rounded w-3/4"></div>
+                    <div className="mt-2 h-4 bg-gray-400 rounded"></div>
+                    <div className="mt-2 h-4 bg-gray-400 rounded w-5/6"></div>
+                  </div>
+                ))}
+            </div>
+            <div className="flex justify-center m-5">
+              <button
+                className="animate-pulse mt-10 select-none rounded-sm bg-gray-400 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none "
+                type="button"
+              >
+                <span className="h-4 bg-gray-400 rounded w-3/4 block"></span>
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="flex justify-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:mx-20">
+              {courses.map((course, index) => (
+                <div
+                  key={index}
+                  className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+                >
+                  <h2>{course.title}</h2>
+                  <p>Category: {course.category}</p>
+                  <p>Level: {course.level}</p>
+                  <p>Popularity: {course.popularity}</p>
+                  <div>
+                    <Link href={`/editcourse?id=${course.id}`}>
+                      <button
+                        className="mt-10 select-none rounded-sm bg-gradient-to-tr from-blue-900 to-blue-800 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-900/10 transition-all hover:shadow-lg hover:shadow-blue-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none "
+                        type="button"
+                      >
+                        Edit
+                      </button>{" "}
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+      <Footer />
+    </div>
+  );
+};
+
+export default ManageCourse;
