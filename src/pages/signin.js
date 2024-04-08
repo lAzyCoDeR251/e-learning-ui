@@ -53,12 +53,55 @@ const SignIn = () => {
       <div className="h-[100vh] items-center flex justify-center px-5 lg:px-0">
         <div className="max-w-full h-[100vh] bg-white flex justify-center flex-1">
           <div className="flex-1 bg-blue-900 text-center hidden md:flex">
+            <div className="absolute top-4 left-4 cursor-pointer">
+              <Link href="/">
+                <svg
+                  class="w-10 h-10 text-white hover:text-gray-400 dark:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5"
+                  />
+                </svg>
+              </Link>
+            </div>
             <div
               className="m-12 xl:m-16 w-full bg-contain bg-center bg-no-repeat"
               style={{
                 backgroundImage: `url(https://www.tailwindtap.com/assets/common/marketing.svg)`,
               }}
             ></div>
+          </div>
+
+          <div className="md:hidden relative top-2 left-2 cursor-pointer">
+            <Link href="/">
+              <svg
+                class="w-10 h-10 text-black hover:text-gray-400 dark:text-white"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5"
+                />
+              </svg>
+            </Link>
           </div>
           <div className="flex justify-center items-center lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
             <div className=" w-[320px] flex flex-col items-center">
