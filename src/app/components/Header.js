@@ -76,7 +76,7 @@ const Header = ({ router }) => {
         handleLogout();
       } else {
         setIsLoggedIn(true);
-        fetchProfileData(token);
+        // fetchProfileData(token);
       }
     } else {
       setIsLoggedIn(false);
@@ -104,7 +104,7 @@ const Header = ({ router }) => {
     }
   };
 
-  console.log(isSuperAdmin);
+  // console.log(isSuperAdmin);
 
   return (
     <div>
