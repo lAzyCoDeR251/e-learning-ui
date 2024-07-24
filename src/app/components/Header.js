@@ -76,6 +76,7 @@ const Header = ({ router }) => {
         handleLogout();
       } else {
         setIsLoggedIn(true);
+        fetchProfileData(token);
       }
     } else {
       setIsLoggedIn(false);
