@@ -96,13 +96,15 @@ const Header = ({ router }) => {
     try {
       const userData = await userApi.fetchUserProfile(token);
       setUserProfile(userData);
-      console.log("temp:",userData.user.issuperadmin);
+      // console.log("temp:",userData.user.issuperadmin);
       setIsSuperAdmin(userData.user.issuperadmin);
     } catch (error) {
       // Handle error
       console.error("Error fetching data:", error);
     }
   };
+
+  console.log(isSuperAdmin);
 
   return (
     <div>
